@@ -15,10 +15,10 @@ print_help() {
 
 terminalupload - Created by Dashiell Benton
 
---help, -h     Prints this help message and exits.
---file, -f        Selects an input file. (the LOCAL_FILE in the curl command)
---output-file, -o        Selects an output file, the filename it will be when uploaded. If none is specified, will default to the name of the input file.  (replaces FILE_ON_FILEBIN in curl command)
---bin, -b       Selects a bin, the part before the filename. If none is specified, it randomly generates one. Custom bin names must be 10-15 characters. (replaces FILE_CODE in curl command)
+--help, -h            Prints this help message and exits.
+--file, -f            Selects an input file. (the LOCAL_FILE in the curl command)
+--output-file, -o     Selects an output file, the filename it will be when uploaded. If none is specified, will default to the name of the input file.  (replaces FILE_ON_FILEBIN in curl command)
+--bin, -b             Selects a bin, the part before the filename. If none is specified, it randomly generates one. Custom bin names must be 10-15 characters. (replaces FILE_CODE in curl command)
 
 Credits:
 Filebin, for the amazing cloud storage and API - https://filebin.net
