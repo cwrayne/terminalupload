@@ -14,6 +14,10 @@ curl -fsSL https://dashiellbenton.com/tu/install-macos.sh | bash
 ```
 
 ## Manual way
+### Windows
+Download [this file](https://dashiellbenton.com/tu/terminalupload.cmd) and [also this one](https://dashiellbenton.com/tu/terminalupload.ps1). Then, put both of those into C:\.
+
+Finally, test it out with `terminalupload`!
 ### Linux
 First, download the binary and chmod it:
 ```
