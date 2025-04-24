@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Downloading and installing terminalupload..."
-wget https://raw.githubusercontent.com/cwrayne/terminalupload/refs/heads/main/terminalupload -O /tmp/terminalupload
+wget https://dashiellbenton.com/tu/terminalupload -O /tmp/terminalupload
 mv /tmp/terminalupload /usr/local/bin/terminalupload
 echo "terminalupload installed! Downloading dependencies..."
 
