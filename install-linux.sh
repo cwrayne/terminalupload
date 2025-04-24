@@ -2,6 +2,7 @@
 echo "Downloading and installing terminalupload..."
 wget https://dashiellbenton.com/tu/terminalupload -O /tmp/terminalupload
 mv /tmp/terminalupload /usr/local/bin/terminalupload
+chmod +x /usr/local/bin/terminalupload
 echo "terminalupload installed! Downloading dependencies..."
 
 # Detect if running in WSL
