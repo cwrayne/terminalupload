@@ -37,5 +37,8 @@ Then, install jq using [Homebrew](https://brew.sh):
 brew install jq
 ```
 *(P.S. If you don't have Homebrew installed, use this command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`)*
-
+Finally, move it to `/usr/local/`:
+```
+mv terminalupload /usr/local/
+```
 Now test it with `terminalupload`!
