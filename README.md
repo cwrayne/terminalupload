@@ -1,11 +1,16 @@
 # terminalupload
 Upload files to Filebin from the terminal.
 ## Quick install
-(Windows and macOS will be supported soon)
+(Windows will be supported soon)
 ### Linux
 Simply run this command:
 ```
 curl -fsSL https://dashiellbenton.com/tu/install-linux.sh | bash
+```
+### macOS
+Simply run this command:
+```
+curl -fsSL https://dashiellbenton.com/tu/install-macos.sh | bash
 ```
 
 ## Manual way
