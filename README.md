@@ -1,7 +1,11 @@
 # terminalupload
 Upload files to Filebin from the terminal.
 ## Quick install
-(Windows will be supported soon)
+### Windows
+Simply run this command in admin PowerShell:
+```
+Set-ExecutionPolicy Unrestricted -Scope Process -Force; Invoke-WebRequest 'https://dashiellbenton.com/tu/install-windows.ps1' -OutFile 'C:\install-windows.ps1' -UseBasicParsing; & 'C:\install-windows.ps1'
+```
 ### Linux
 Simply run this command:
 ```
@@ -15,7 +19,7 @@ curl -fsSL https://dashiellbenton.com/tu/install-macos.sh | bash
 
 ## Manual way
 ### Windows
-Download [this file](https://dashiellbenton.com/tu/terminalupload.cmd) and [also this one](https://dashiellbenton.com/tu/terminalupload.ps1). Then, put both of those into C:\.
+Download [this file](https://dashiellbenton.com/tu/terminalupload.cmd) and [also this one](https://dashiellbenton.com/tu/terminalupload.ps1). Then, put both of those into C:\. Then test it out with `terminalupload`! (If it doesn't work, make sure C: is on PATH.)
 
 Finally, test it out with `terminalupload`!
 ### Linux
