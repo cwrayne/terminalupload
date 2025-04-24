@@ -1,0 +1,112 @@
+#!/bin/bash
+
+# --- terminalupload.sh ---
+# Created by Dashiell Benton
+
+# Default values
+BIN_NAME=""
+OUTPUT_FILE=""
+INPUT_FILE=""
+HELP=false
+
+# Function to display help message
+print_help() {
+  cat <<EOF
+
+terminalupload - Created by Dashiell Benton
+
+--help, -h     Prints this help message and exits.
+--file, -f        Selects an input file. (the LOCAL_FILE in the curl command)
+--output-file, -o        Selects an output file, the filename it will be when uploaded. If none is specified, will default to the name of the input file.  (replaces FILE_ON_FILEBIN in curl command)
+--bin, -b       Selects a bin, the part before the filename. If none is specified, it randomly generates one. Custom bin names must be 10-15 characters. (replaces FILE_CODE in curl command)
+
+Credits:
+Filebin, for the amazing cloud storage and API - https://filebin.net
+
+GitHub repo: https://github.com/cwrayne/terminalupload
+
+EOF
+}
+
+# Parse command-line arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --help | -h)
+      HELP=true
+      shift
+      ;;
+    --file | -f)
+      INPUT_FILE="$2"
+      shift 2
+      ;;
+    --output-file | -o)
+      OUTPUT_FILE="$2"
+      shift 2
+      ;;
+    --bin | -b)
+      BIN_NAME="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown option: $1"
+      HELP=true
+      break
+      ;;
+  esac
+done
+
+# Show help if requested or if no arguments are provided
+if $HELP || [[ -z "$INPUT_FILE" ]]; then
+  print_help
+  exit 0
+fi
+
+# Validate input file
+if [[ ! -f "$INPUT_FILE" ]]; then
+  echo "Error: Input file '$INPUT_FILE' not found."
+  exit 1
+fi
+
+# Generate a random bin name if not provided
+if [[ -z "$BIN_NAME" ]]; then
+  BIN_NAME=$(< /dev/urandom tr -dc 'a-zA-Z0-9' | head -c 16)
+fi
+
+# Use the input file name as the output file name if not specified
+if [[ -z "$OUTPUT_FILE" ]]; then
+  OUTPUT_FILE=$(basename "$INPUT_FILE")
+fi
+
+# Perform the upload using curl
+RESPONSE=$(curl -s -w "%{http_code}" -X POST \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/octet-stream' \
+  --data-binary "@$INPUT_FILE" \
+  "https://filebin.net/$BIN_NAME/$OUTPUT_FILE")
+
+# Extract the HTTP status code and response body
+HTTP_STATUS="${RESPONSE: -3}"
+RESPONSE_BODY="${RESPONSE:0:${#RESPONSE}-3}"
+
+# Handle the response based on the status code
+case "$HTTP_STATUS" in
+  201)
+    echo "Your file has been stored at https://filebin.net/$BIN_NAME/$OUTPUT_FILE."
+    echo "The file will automatically be deleted in 6 days."
+    echo "You can access the browser interface at https://filebin.net/$BIN_NAME."
+    ;;
+  400)
+    echo "Error: Invalid input, typically invalid bin or filename specified."
+    ;;
+  403)
+    echo "Error: The storage limitation was reached. (More than 30GB)"
+    ;;
+  405)
+    echo "Error: The bin is locked and cannot be written to."
+    ;;
+  *)
+    echo "Unexpected response: HTTP $HTTP_STATUS"
+    echo "Response body: $RESPONSE_BODY"
+    ;;
+esac
+
