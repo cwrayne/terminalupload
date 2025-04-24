@@ -9,6 +9,7 @@ curl -fsSL https://dashiellbenton.com/tu/install-linux.sh | bash
 ```
 
 ## Manual way
+### Linux
 First, download the binary:
 ```
 wget https://dashiellbenton.com/tu/terminalupload
@@ -23,3 +24,16 @@ Finally, move the binary to `/usr/local/bin`:
 ```
 mv terminalupload /usr/local/bin
 ```
+Now test it with `terminalupload`!
+### macOS
+First, download the binary:
+```
+wget https://dashiellbenton.com/tu/terminalupload
+```
+Then, install jq using [Homebrew](https://brew.sh):
+```
+brew install jq
+```
+*(P.S. If you don't have Homebrew installed, use this command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`)*
+
+Now test it with `terminalupload`!
